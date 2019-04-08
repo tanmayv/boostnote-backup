@@ -1,0 +1,95 @@
+createdAt: "2019-03-30T20:23:38.032Z"
+updatedAt: "2019-03-30T20:50:34.463Z"
+type: "MARKDOWN_NOTE"
+folder: "6dc9338cd9b2395227d5"
+title: "Typescript: Type predicates"
+tags: [
+  "typescript"
+]
+content: '''
+  # Typescript: Type predicates
+  
+  > Type predicates in typescript helps you to narrow down types based on conditionals. They are similar to type guards but are applied on funtions.
+  >> Predicate is also considered as User-defined type guard.
+  
+  ~~~~
+  function isString(s) {
+    return typeof s === 'string';
+  }
+  ~~~~
+  
+  ~~~~
+  function toUpperCase(x: unknown) {
+    if(isString(x)) {
+      x.toUpperCase(); // Err: x is still unknown
+    }
+  }
+  ~~~~
+  
+  The problem here is we already did the string check inside `isString()` method, so we know for sure `x` is a `string` when `x.toUpperCase()` is called. To tell this explicitly to typescript, we use type predicates.
+  
+  ~~~~
+  function isString(s): s is string {
+    return typeof s === 'string';
+  }
+  ~~~~
+  
+  Now, above will work for good.
+  
+  ## Predicate along with type union
+  
+  > Type unions combine multiple types into one.
+  
+  ~~~~
+  function getSmallPet(): Fish | Bird {
+    // ...
+  }
+  
+  let pet = getSmallPet();
+  pet.layEggs(); //okay, since in both types
+  pet.swim(); //error, since ts doesn't know which type here.
+  ~~~~
+  
+  When happens when we want to exactly know what is the type of `pet` in above example. A common approach in js to differentiate between two possible values is to `check for the presence of unique member`.
+  
+  ~~~~
+  let pet = getSmallPet();
+  
+  // both will error since we can call only those methods that are in both types
+  if(pet.swim) {
+    pet.swim()
+  } else if (pet.fly) {
+    pet.fly();
+  }
+  ~~~~
+  
+  we need to use type assertion to get the same code working.
+  
+  ~~~~
+  let pet = getSmallPet();
+  
+  if((<Fish>pet).swim) {
+    (<Fist>pet).swim();
+  }
+  else {
+    (<Bird>pet).fly();
+  }
+  ~~~~
+  
+  We can use type predicate to let ts know the type of pet.
+  
+  ~~~~
+  function is Fist(pet: Fish | Bird): pet is Fish {
+    return (<Fish>.pet).swim !== undefined;
+  }
+  
+  if(isFish(pet)) {
+    pet.swim();
+  } else {
+    pet.fly(); // ts knows since its not a fish, it must be bird.
+  }
+  ~~~~
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

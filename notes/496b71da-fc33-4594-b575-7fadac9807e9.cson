@@ -1,0 +1,73 @@
+createdAt: "2019-03-30T20:17:28.171Z"
+updatedAt: "2019-03-30T20:19:31.322Z"
+type: "MARKDOWN_NOTE"
+folder: "6dc9338cd9b2395227d5"
+title: "Application: Autocomplete with trie search"
+tags: []
+content: '''
+  # Application: Autocomplete with trie search
+  ### Input: 
+  List of words in our dictionary
+  Some prefix
+  
+  ### Output:
+  List of all the words starting with that prefix.
+  
+  ## Scratch:
+  So each unique prefix will lead us to a node in trie tree. If the node has no children then the prefix is the complete word we have. 
+  If not, from that node we can reach all the words that has the input prefix.
+  Intuition: From that word, all the words can be found via a DFS from that node.
+  
+  ## Node structure: 
+  Each node should have value associated with which can tell us it is end of the word. Or if we are using prefix as a key, we should a value associated at this node.
+  Each node should have a link to 26 other nodes, one for each alphabet.
+  ### 
+  Node: 
+  	T value
+  	boolean isWordEnd
+  	Node[] links  size 26
+  
+  ## Algorithm:
+  Step 1: Generate trie tree from list of possible words
+  Step 2: Get the corresponding node in trie tree for input word.
+  Step 3: Retrieve all the possible words from the given node.
+  ### Step 1: (Initialising) 
+  ```
+  1. Initialise working node n to root node r
+  2. For each word w in word list:
+  3. 	for each char c in w:
+  4. 		if node(c) exists and this is not word end, move along to next char
+  5. 		if node(c) does not exist then add node(c) and link to n
+  6. 		set current working node n to node(c)
+  7. 	for mark current working node n’s end to true
+  8. 	set working node back to r
+  ```
+  ### Step 2: (Traversing)
+  ```
+  1. Given root node r, set current node n to r
+  2. For each char c in word:
+    3.    check n->node(c) exist or not
+    4. 		if exist mark node(c) as n
+    5. 		else “word not found”
+  6. Return n as corresponding node
+  ```
+  ### Step 3: Get list of possible string from given node
+  ```
+  Get stack S to store a pair (Node, lastIndex)
+  Root node R
+  Push (R, a-1) to stack
+  words list L to []
+  Current word w to “”
+  While stack is not empty
+  	current node N as S.pop().node and li be the lastIndex in the pair.
+  	find a non-null node J in N links such that node index > lastIndex
+  	if (J) then push (N, J’s index wrt N) to. Stack and mark N as J
+  		push(J, a-1)
+  		also append index of J to w
+  	if(J) not found, add w to list and clear W
+    ```
+  		
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

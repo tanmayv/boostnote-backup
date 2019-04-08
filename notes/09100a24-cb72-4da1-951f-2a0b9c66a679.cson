@@ -1,0 +1,27 @@
+createdAt: "2019-04-01T18:37:33.889Z"
+updatedAt: "2019-04-01T18:40:30.735Z"
+type: "MARKDOWN_NOTE"
+folder: "6dc9338cd9b2395227d5"
+title: "C++: Tips for competitive programming"
+tags: [
+  "competitive-programming"
+]
+content: '''
+  # C++: Tips for competitive programming
+  
+  1. Fast IO
+  - use scanf, printf instead of cin, cout
+  - If you want to cin, cout, use the following two lines in your code
+  ~~~~
+  int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  }
+  ~~~~
+  
+  2. Time savers
+  - use `#include<bits/stdc++.h` as it import all the std c++ library generally required in coding competition.
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

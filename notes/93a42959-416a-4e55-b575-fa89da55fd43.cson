@@ -1,0 +1,14 @@
+createdAt: "2019-03-31T19:26:48.500Z"
+updatedAt: "2019-03-31T19:28:40.685Z"
+type: "MARKDOWN_NOTE"
+folder: "6dc9338cd9b2395227d5"
+title: "Ideas"
+tags: []
+content: '''
+  # Ideas
+  - Graph/Tree visualizer from array data. Where child of i'th element are 2i and 2i + 1. Proposed way - Python + toyplot lib to draw graphs.
+  - 
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

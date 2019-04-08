@@ -1,0 +1,18 @@
+createdAt: "2019-04-07T14:09:13.342Z"
+updatedAt: "2019-04-07T14:13:55.696Z"
+type: "MARKDOWN_NOTE"
+folder: "6dc9338cd9b2395227d5"
+title: "Project #1: Dev env for C++ competive programming"
+tags: []
+content: '''
+  # Project #1: Dev env for C++ competive programming
+  
+  - [ ] Simple project with main.cpp and CMAKE file to build project
+  - [ ] read input from input.txt and verify with output.txt
+  - [ ] Once done, move main.cpp to new git project with other programs
+  - [ ] main.cpp need to have problem description, input.txt and output.txt
+  - [ ] new debug.h file for debugging graphs tree or anyother visualization and benchmarking tools.
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

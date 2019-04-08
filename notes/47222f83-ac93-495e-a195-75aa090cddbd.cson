@@ -1,0 +1,95 @@
+createdAt: "2019-03-31T19:21:08.820Z"
+updatedAt: "2019-03-31T21:54:53.358Z"
+type: "MARKDOWN_NOTE"
+folder: "6dc9338cd9b2395227d5"
+title: "Data Structure: Segment Tree"
+tags: [
+  "data-structure"
+]
+content: '''
+  # Data Structure: Segment Tree
+  
+  ## Use case:
+  
+  Segement tree is used in cases where you need to perform multiple `range queries` on array and modifications of elements of same array. e.g., finding sum of elements in an array from indices L to R, or find the minimum known as `Range Minimum Query problem`.
+  
+  ## What is Segment Tree?
+  
+  Segment Tree is basically a binary tree used to store array's interval or segments. Each node in the tree represent an interval. The root will be A[0: n - 1]. Leafs will be array elements A[i]. Internal nodes will A[i:j]. Each parent node is split into two equal halves. 
+  
+  *Operations:*
+  - *Update*: Updating an array element should refect the corresponding change in Segment Tree.
+  - *Query:* We can query on an interval and get the result (min, max, summation etc).
+  
+  ## Implementation
+  Linear array is used to represent a segment tree (since it's a*binary tree*). *What needs to be stored in the array depends on what we need to query.*.E.g, if we want to calculate summation, each node will contain sum of its children.
+  
+  > A segment tree is built using recursion (bottom-up apprach). Start from the leafs and go up to the root and update the corresponding changes in the nodes that are in path from leaves to root.
+  
+  *Update*: Search the leaf that contains the element to update, update the element. Now re calculate the values of all the nodes from this leaf to root.
+  *Query*: Start from the root. if current node's range is under required range, return the value of current node. it it's outside the return 0, if it's partial return sum of query(left child) and query(right child)
+  ![23a49f0e.png](:storage/47222f83-ac93-495e-a195-75aa090cddbd/23a49f0e.png)
+  ## psuedo-code
+  
+  1. Build a segment from give array
+  
+  ~~~~
+  Input: nodeIndex, int start, int end
+  A[n]
+  tree = [2n - 1] // max size based on n leaf nodes for a binary tree
+  build(node, start, end) {
+    if (start == end) {
+      //leaf node
+      tree[node] = A [start];
+    } else {
+      int mid = ( start + end ) / 2;
+      build(2*node + 1, start, mid);
+      build(2*node + 2, mid + 1, end);
+      tree[node] = tree[2*node + 1] + tree[2*node + 2] // if query is summation.
+    }
+  }
+  ~~~~
+  
+  2. Updating an element of given array
+  
+  ~~~~
+  A[n]
+  tree = [2n - 1] already build
+  
+  update(int node, int start, int end, int idx, int val) {
+    if(start == end) {
+      A[idx] = val;
+      tree[node] = val;
+    } else {
+      int mid = (start + end) / 2;
+      if (start <= idx and idx <= mid) {
+        //update left child
+        update(2*node + 1, start, mid, idx, val);
+      } else {
+        update(2*node + 2, mid + 1, end, idx, val);
+      }
+      tree[node] = tree[2*node + 1] + tree[2*node + 2];
+    }
+  }
+  ~~~~
+  
+  3. Querying a range
+  ~~~~
+  int query(int node, int start, int end, int l, int r) {
+    if(r < start or end < l) {
+      return 0;
+    }
+    if(l <= start and end <= r) {
+      return tree[node];
+    }
+    
+    int mid = (start + end) / 2;
+    int p1 = query(2*node, start, mid, l, r);
+    int p2 = query(2*node+1, mid+1, end, l, r);
+    return p1 + p2;
+  }
+  ~~~~
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

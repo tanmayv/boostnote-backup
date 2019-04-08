@@ -1,0 +1,55 @@
+createdAt: "2019-04-01T18:57:01.861Z"
+updatedAt: "2019-04-02T08:42:09.448Z"
+type: "MARKDOWN_NOTE"
+folder: "6dc9338cd9b2395227d5"
+title: "Bit Manipulation Application"
+tags: []
+content: '''
+  # Bit Manipulation Application
+  
+  1. XOR (^)
+  - XOR of two same no. is 0 and XOR of no. with 0 is number itself.
+  - Using this propery we can remove all pairs from set and find the non pairing number by taking XOR of all the elements in set.
+  
+  2. Left Shift (<<)
+  - x << y is equivalent to x * 2^y;
+  
+  3. Right Shift (>>)
+  - x >> y is equivalent ot x / 2^y;
+  
+  3. Find if n is power of two or not.
+  for powers of 2, they have only right bit set to 1. (2^n - 1) are all ones and they have on less bit than 2^n.
+  So using this `x & (x -1 ) = 0` for all 2^n (but this also includes 0). So final solution will be `x && !(x & (x-1))`;
+  
+  4. Unset right most set bit. (e.g. to cound no of set bits of a number)
+  for `x` and `x-1` right set bit and bit next to it are flipped when compared to each other. So you can unset right most bit by any number by
+  `x = x & (x-1)`
+  
+  5. Check if ith bit is set or not
+  we can left shift `x` by i so ith bit is now MSB and all others are 0. so if (x << i != 0) should tell if ith bit is set or not.
+  
+  6. Find the larget power of 2 which is less than or equal to N. OR Most significant bit in binary repersentation.
+  
+  We need to change all the bits right to MSB to 1, so new number will be equal to 2^i -1 where i is number of bits in n. This new no. is also now (x) + (x-1). where x is the required answer.
+  
+  How to set all bits to 1 right to MSB ? for a 16 bit no, do as follows
+  
+  ~~~~
+  N = N | N << 1
+  N = N | N << 2
+  N = N | N << 4
+  N = N | N << 8
+  ~~~~
+  
+  Now this N = 2*x - 1. so x = `(N+1) >> 1`;
+  
+  7. Rightmost 1 in binary representation of x
+  - `x ^ (x * (x-1))`
+  - `x & (-x)` since -x is x's complement + 1
+  
+  8. Set nth bit of number
+  `x | (1 << n)`
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
